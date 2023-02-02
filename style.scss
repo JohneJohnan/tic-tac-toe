@@ -43,10 +43,32 @@ main {
 }
 #board {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    place-items: center;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    place-content: center;
+    > div {
+        display: grid;
+        place-content: center;
+    }
 }
+
+#board > div:nth-child(1),
+#board > div:nth-child(2),
+#board > div:nth-child(3),
+#board > div:nth-child(4),
+#board > div:nth-child(5),
+#board > div:nth-child(6) {
+    border-bottom: 4px solid black;
+}
+#board > div:nth-child(1),
+#board > div:nth-child(4),
+#board > div:nth-child(7),
+#board > div:nth-child(2),
+#board > div:nth-child(5),
+#board > div:nth-child(8) {
+    border-right: 4px solid black;
+}
+
 #buttons {
     text-align: center;
 }
@@ -60,6 +82,7 @@ button {
         size: 1.5rem;
         weight: 700;
     }
+    cursor: pointer;
 }
 footer {
     text-align: center;
@@ -68,4 +91,15 @@ footer {
     font: {
         size:min(1.5rem, 4vh);
     }
+}
+#resultMessage {
+    background-color: #fff;
+    font-size: 2rem;
+    padding: 2rem;
+    border: 6px solid purple;
+    border-radius: 6px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

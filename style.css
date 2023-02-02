@@ -48,9 +48,31 @@ main {
 
 #board {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  place-items: center;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  place-content: center;
+}
+#board > div {
+  display: grid;
+  place-content: center;
+}
+
+#board > div:nth-child(1),
+#board > div:nth-child(2),
+#board > div:nth-child(3),
+#board > div:nth-child(4),
+#board > div:nth-child(5),
+#board > div:nth-child(6) {
+  border-bottom: 4px solid black;
+}
+
+#board > div:nth-child(1),
+#board > div:nth-child(4),
+#board > div:nth-child(7),
+#board > div:nth-child(2),
+#board > div:nth-child(5),
+#board > div:nth-child(8) {
+  border-right: 4px solid black;
 }
 
 #buttons {
@@ -65,6 +87,7 @@ button {
   padding: 10px 16px;
   font-size: 1.5rem;
   font-weight: 700;
+  cursor: pointer;
 }
 
 footer {
@@ -72,4 +95,16 @@ footer {
   background-color: #2ac;
   padding: 6px 0 9px;
   font-size: min(1.5rem, 4vh);
+}
+
+#resultMessage {
+  background-color: #fff;
+  font-size: 2rem;
+  padding: 2rem;
+  border: 6px solid purple;
+  border-radius: 6px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }/*# sourceMappingURL=style.css.map */
