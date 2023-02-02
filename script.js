@@ -1,7 +1,10 @@
 const Player = (iscomputer, mark) => {
     let score = 0;
     const imgAddress = mark === 'x' ? 'x.svg' : 'o.svg';
-    function wins() { score++ }
+    const scoreDom = mark === 'x' ?
+        document.getElementById('xScore') : 
+        document.getElementById('oScore');
+    function wins() { scoreDom.textContent = ++score }
     return { mark, imgAddress, wins };
 };
 
@@ -46,18 +49,29 @@ const DomModule = (() => {
     return { getResultMessage, getBoardChildren, showMessage }
 })();
 
-function round(vsComputer) {
+function game (vsComputer) {
+    const X = Player(false, 'x');
+    const O = Player(vsComputer, 'o');
+    let currentPlayer = X;
+    round(false, X, O, currentPlayer);
+} 
+
+function round (vsComputer, X, O, currentPlayer) {
     const boardChildren = [];
     const board = [
         [, , ,],
         [, , ,],
         [, , ,],
     ];
-    const X = Player(false, 'x');
-    const O = Player(vsComputer, 'o');
-    let currentPlayer = X;
     let ValidClicksCount = 0;
-    document.getElementById('newRound').addEventListener('click', () => round(false));
+    document.getElementById('newRound').addEventListener('click', () => {
+        round(false, X, O, currentPlayer === X ? O : X); 
+    });
+    document.getElementById('newGame').addEventListener('click', () => {
+        document.getElementById('xScore').textContent = 0; 
+        document.getElementById('oScore').textContent = 0;
+        game(false);
+    });
     DomModule.getResultMessage();
     DomModule.getBoardChildren(boardChildren);
 
@@ -121,5 +135,4 @@ function round(vsComputer) {
         return false;
     }
 }
-
-round(false);
+game(false);
